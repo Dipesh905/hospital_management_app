@@ -9,6 +9,16 @@ class LabReportScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lab Report'),
       ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: ListTile(
+              title: Text(' data $index'),
+            ),
+          );
+        },
+      ),
     );
   }
 }
