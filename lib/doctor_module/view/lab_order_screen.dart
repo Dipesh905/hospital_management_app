@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital_management_app/common_module/widgets/button_widget.dart';
 import 'package:hospital_management_app/common_module/widgets/input_field_widget.dart';
+import 'package:hospital_management_app/patient_bloc/patient_bloc.dart';
+import 'package:hospital_management_app/patient_bloc/patient_event.dart';
 
 class LabOrderScreen extends StatelessWidget {
   LabOrderScreen({super.key});
@@ -80,7 +83,7 @@ class LabOrderScreen extends StatelessWidget {
                 buttonTitle: 'Create Lab Order',
                 onPressed: () {
                   if (_key.currentState!.validate()) {
-                    print(_patientNameController.text);
+                    context.read<PatientBloc>().add(AddPatientsEvent());
                   }
                 },
               )
