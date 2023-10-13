@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hospital_management_app/common_module/button_widget.dart';
-import 'package:hospital_management_app/common_module/input_field_widget.dart';
+import 'package:hospital_management_app/common_module/widgets/button_widget.dart';
+import 'package:hospital_management_app/common_module/widgets/input_field_widget.dart';
 
 class LabOrderScreen extends StatelessWidget {
   LabOrderScreen({super.key});
