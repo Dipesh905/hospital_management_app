@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hospital_management_app/common_module/common_screens/home_screen.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:hospital_management_app/common_module/common_screens/login_screen.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
 
 void main() {
@@ -16,12 +17,13 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => PatientCubit(),
       child: MaterialApp(
+        builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
         title: 'Hospital Management App',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
-        home: const HomeScreen(),
+        home: const LoginScreen(),
       ),
     );
   }

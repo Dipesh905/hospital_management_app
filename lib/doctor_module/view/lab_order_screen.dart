@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hospital_management_app/common_module/common_model/lab_test_model.dart';
-import 'package:hospital_management_app/common_module/common_model/patient_model.dart';
+import 'package:hospital_management_app/patient_cubit/patient_model.dart';
 import 'package:hospital_management_app/common_module/widgets/button_widget.dart';
 import 'package:hospital_management_app/common_module/widgets/input_field_widget.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
@@ -82,15 +83,67 @@ class LabOrderScreen extends StatelessWidget {
               ),
               ButtonWidget(
                 buttonTitle: 'Create Lab Order',
-                onPressed: () {
+                onPressed: () async {
                   if (_key.currentState!.validate()) {
-                    context.read<PatientCubit>().addNewPatient(PatientModel(
-                        labOrderDate: DateTime.now().toString(),
-                        patientName: _patientNameController.text,
-                        patientAddress: _patientAddressController.text,
-                        patientAge: int.parse(_patientAgeController.text),
-                        labTestModel: LabTestModel(
-                            labTestName: _labTestNameController.text)));
+                    try {
+                      EasyLoading.show(status: 'Please wait ...');
+
+                      List<PatientModel> allPatients = await context
+                          .read<PatientCubit>()
+                          .addNewPatient(
+                            PatientModel(
+                                labOrderDate: DateTime.now().toString(),
+                                patientName: _patientNameController.text,
+                                patientAddress: _patientAddressController.text,
+                                patientAge:
+                                    int.parse(_patientAgeController.text),
+                                labTestModel: LabTestModel(
+                                    labTestName: _labTestNameController.text)),
+                          );
+
+                      if (allPatients.isNotEmpty) {
+                        if (context.mounted) {
+                          EasyLoading.dismiss();
+                          showDialog(
+                            context: context,
+                            builder: (context) => const AlertDialog(
+                              backgroundColor: Colors.green,
+                              title: Text('Sucess'),
+                              content: Text(
+                                  'You have sucessfully send patient information to Lab Technician Department'),
+                            ),
+                          );
+
+                          _patientNameController.clear();
+                          _patientAgeController.clear();
+                          _patientAddressController.clear();
+                          _labTestNameController.clear();
+                        }
+                      } else {
+                        if (context.mounted) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => const AlertDialog(
+                                backgroundColor: Colors.green,
+                                title: Text('Please Wait'),
+                                content: CircularProgressIndicator()),
+                          );
+                        }
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        EasyLoading.dismiss();
+                        showDialog(
+                          context: context,
+                          builder: (context) => const AlertDialog(
+                            backgroundColor: Colors.red,
+                            title: Text('Failed'),
+                            content: Text(
+                                'Failed to send to Lab Technician Department'),
+                          ),
+                        );
+                      }
+                    }
                   }
                 },
               )

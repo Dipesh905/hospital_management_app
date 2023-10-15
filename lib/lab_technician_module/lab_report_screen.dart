@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hospital_management_app/common_module/common_model/patient_model.dart';
+import 'package:hospital_management_app/patient_cubit/patient_model.dart';
 import 'package:hospital_management_app/lab_technician_module/lab_report_detail_screen.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
 
