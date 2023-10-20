@@ -7,9 +7,13 @@ import 'package:hospital_management_app/common_module/widgets/button_widget.dart
 import 'package:hospital_management_app/common_module/widgets/input_field_widget.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
 
+/// LabReportDetailScreen
+///
+/// You can view patient lab report details from this screen
 class LabReportDetailScreen extends StatelessWidget {
   const LabReportDetailScreen({required this.patientModel, super.key});
 
+  /// Selected PatientModel
   final PatientModel patientModel;
 
   @override

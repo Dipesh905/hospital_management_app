@@ -4,6 +4,10 @@ import 'package:hospital_management_app/patient_cubit/patient_model.dart';
 import 'package:hospital_management_app/lab_technician_module/lab_report_detail_screen.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
 
+/// LabReportScreen
+///
+/// you can view all patients information (like name,age,address and Lab test Name) submitted by doctor in this screen.
+/// on selecting any patients you can view patients more information in detail
 class LabReportScreen extends StatelessWidget {
   const LabReportScreen({super.key});
 

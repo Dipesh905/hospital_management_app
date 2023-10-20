@@ -7,6 +7,9 @@ import 'package:hospital_management_app/common_module/widgets/button_widget.dart
 import 'package:hospital_management_app/common_module/widgets/input_field_widget.dart';
 import 'package:hospital_management_app/patient_cubit/patient_cubit.dart';
 
+/// LabOrderScreen
+///
+/// Doctor fills the patients information from this screen and send it to lab technician
 class LabOrderScreen extends StatelessWidget {
   LabOrderScreen({super.key});
 
